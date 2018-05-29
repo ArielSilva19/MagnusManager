@@ -1,0 +1,60 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Alterar.aspx.cs" Inherits="Pages_Cadastrar_Alterar" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="lblTitulo" runat="server" Text="Alteração de Funcionário"></asp:Label>
+            <br />
+            <br />
+            <asp:Label ID="lblNome" runat="server" Text="Nome"></asp:Label>
+            <br />
+            <asp:TextBox ID="txtNome" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="lblCPF" runat="server" Text="CPF"></asp:Label>
+            <br />
+            <asp:TextBox ID="txtCPF" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="lblData" runat="server" Text="Data de nascimento"></asp:Label>
+            <br />
+            <asp:TextBox ID="txtData" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="lblEmail" runat="server" Text="Email"></asp:Label>
+            <br />
+            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="lblTelefone" runat="server" Text="Telefone"></asp:Label>
+            <br />
+            <asp:TextBox ID="txtTelefone" runat="server"></asp:TextBox>
+            <br />
+            <br />
+
+            <asp:DropDownList ID="ddlTipo" runat="server" OnSelectedIndexChanged="ddlTipo_SelectedIndexChanged">
+            <asp:ListItem Selected="True">Selecione</asp:ListItem>
+            <asp:ListItem Value="0">Administrador</asp:ListItem>
+            <asp:ListItem Value="1">Secretaria</asp:ListItem>
+            <asp:ListItem Value="2">Operario</asp:ListItem>
+        </asp:DropDownList>
+        
+        
+            <br />
+            <br />
+            <asp:Button ID="btnSalvar" runat="server" OnClick="btnSalvar_Click" Text="Salvar" />
+            <br />
+            <asp:Label ID="lblMensagem" runat="server"></asp:Label>
+            <br />
+            <br />
+            <asp:HyperLink ID="hlVoltar" runat="server" NavigateUrl="~/Pages/Cadastrar/Cadastro.aspx">Voltar ao Cadastro de Funcionario</asp:HyperLink>
+&nbsp;
+            <asp:Label ID="lblOu" runat="server" Text="ou"></asp:Label>
+&nbsp;
+            <asp:HyperLink ID="hlVisualizar" runat="server" NavigateUrl="~/Pages/Cadastrar/Listar.aspx">Visualizar Funcionarios Cadastrados</asp:HyperLink>
+        </div>
+    </form>
+</body>
+</html>
