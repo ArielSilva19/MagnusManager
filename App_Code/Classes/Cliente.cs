@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for Fornecedor
+/// Summary description for Fornecedor  ///   # Trampei muito!!!!
 /// </summary>
 
 namespace MagnusManager.Classes
