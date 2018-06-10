@@ -11,7 +11,7 @@ namespace MagnusManager.Classes
 {
     public class Pedido
     {
-
+        public int Ped_id { get; set; }
         public int Cli_id { get; set; }
         public int Pro_id { get; set; }
         public int Cat_id { get; set; }

@@ -16,35 +16,6 @@ namespace MagnusManager.Persistencia
 
 
         //métodos 
-
-
-        //insert 
-        public bool Insert(Pedido pedido)
-        {
-                System.Data.IDbConnection objConexao;
-                System.Data.IDbCommand objCommand;
-                string sql = "INSERT INTO ped_pedido(cli_id, pro_id, cat_id, ped_qtde_pro, ped_valor, ped_data_pedido, ped_data_entrega) VALUES(?cli, ?pro, ?cat, ?qtdePro, ?valor, ?dataPedido, ?dataEntrega)";
-
-                objConexao = Mapped.Connection();
-                objCommand = Mapped.Command(sql, objConexao);
-
-                objCommand.Parameters.Add(Mapped.Parameter("?cli", pedido.Cli_id));
-                objCommand.Parameters.Add(Mapped.Parameter("?pro", pedido.Pro_id));
-                objCommand.Parameters.Add(Mapped.Parameter("?cat", pedido.Cat_id));
-                objCommand.Parameters.Add(Mapped.Parameter("?qtdePro", pedido.QtdePro));
-                objCommand.Parameters.Add(Mapped.Parameter("?valor", pedido.Valor));
-                objCommand.Parameters.Add(Mapped.Parameter("?dataPedido", pedido.DataPedido));
-                objCommand.Parameters.Add(Mapped.Parameter("?dataEntrega", pedido.DataEntrega));
-
-
-                objCommand.ExecuteNonQuery();
-                objConexao.Close();
-                objCommand.Dispose();
-                objConexao.Dispose();
-            return true;
-            }
-
-        //selectall
         public DataSet SelectAll()
         {
             DataSet ds = new DataSet();
@@ -67,6 +38,37 @@ namespace MagnusManager.Persistencia
         }
 
 
+
+        //insert 
+        public bool Insert(Pedido pedido)
+        {
+            System.Data.IDbConnection objConexao;
+            System.Data.IDbCommand objCommand;
+            string sql = "INSERT INTO ped_pedido(cli_id, pro_id, cat_id, ped_qtde_pro, ped_valor, ped_data_pedido, ped_data_entrega) VALUES(?cli, ?pro, ?cat, ?qtdePro, ?valor, ?dataPedido, ?dataEntrega)";
+
+            objConexao = Mapped.Connection();
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?cli", pedido.Cli_id));
+            objCommand.Parameters.Add(Mapped.Parameter("?pro", pedido.Pro_id));
+            objCommand.Parameters.Add(Mapped.Parameter("?cat", pedido.Cat_id));
+            objCommand.Parameters.Add(Mapped.Parameter("?qtdePro", pedido.QtdePro));
+            objCommand.Parameters.Add(Mapped.Parameter("?valor", pedido.Valor));
+            objCommand.Parameters.Add(Mapped.Parameter("?dataPedido", pedido.DataPedido));
+            objCommand.Parameters.Add(Mapped.Parameter("?dataEntrega", pedido.DataEntrega));
+
+
+            objCommand.ExecuteNonQuery();
+            objConexao.Close();
+            objCommand.Dispose();
+            objConexao.Dispose();
+            return true;
+        }
+
+        //selectall
+
+
+
         //select 
 
         public Pedido Select(int id)
@@ -86,9 +88,11 @@ namespace MagnusManager.Persistencia
             {
                 obj = new Pedido();
 
+                obj.Ped_id = Convert.ToInt32(objDataReader["ped_id"]);
                 obj.Cli_id = Convert.ToInt32(objDataReader["cli_id"]);
                 obj.Pro_id = Convert.ToInt32(objDataReader["pro_id"]);
                 obj.Cat_id = Convert.ToInt32(objDataReader["cat_id"]);
+                obj.Valor = Convert.ToDouble(objDataReader["ped_valor"]);
                 obj.QtdePro = Convert.ToInt32(objDataReader["ped_qtde_pro"]);
                 obj.DataPedido = Convert.ToDateTime(objDataReader["ped_data_pedido"]);
                 obj.DataEntrega = Convert.ToDateTime(objDataReader["ped_data_entrega"]);
@@ -152,6 +156,33 @@ namespace MagnusManager.Persistencia
 
 
         //update 
+
+        public bool Update(Pedido pedido)
+        {
+            System.Data.IDbConnection objConexao;
+            System.Data.IDbCommand objCommand;
+            string sql = "UPDATE ped_pedido SET cli_id=?cli, pro_id=?pro, cat_id=?cat, ped_qtde_pro=?qtdePro, ped_valor=?valor, ped_data_pedido=?dataPedido, ped_data_entrega=?dataEntrega WHERE ped_id=?id";
+
+
+            objConexao = Mapped.Connection();
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?cli", pedido.Cli_id));
+            objCommand.Parameters.Add(Mapped.Parameter("?pro", pedido.Pro_id));
+            objCommand.Parameters.Add(Mapped.Parameter("?cat", pedido.Cat_id));
+            objCommand.Parameters.Add(Mapped.Parameter("?qtdePro", pedido.QtdePro));
+            objCommand.Parameters.Add(Mapped.Parameter("?valor", pedido.Valor));
+            objCommand.Parameters.Add(Mapped.Parameter("?dataPedido", pedido.DataPedido));
+            objCommand.Parameters.Add(Mapped.Parameter("?dataEntrega", pedido.DataEntrega));
+            objCommand.Parameters.Add(Mapped.Parameter("?id", pedido.Ped_id));
+
+            objCommand.ExecuteNonQuery();
+            objConexao.Close();
+            objCommand.Dispose();
+            objConexao.Dispose();
+
+            return true;
+        }
 
         //delete 
 
